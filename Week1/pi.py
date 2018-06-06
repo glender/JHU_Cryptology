@@ -14,7 +14,7 @@ message="TGEEMNELNNTDROEOAAHDOETCSHAEIRLM"
 m=[3,0,5,1,6,2,7,4]
 key="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-# split our messgae into strings of length 8
+# split our message into strings of length 8
 splits=textwrap.wrap(message, 8)
 
 # iterate our split strings
