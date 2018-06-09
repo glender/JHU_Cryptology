@@ -16,46 +16,52 @@ import sets
 def strxor(a, b):     # xor two strings (trims the longer input)
     return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a, b)])
 
+# string to hex
 def toHex(x):
-    toHex = "".join([hex(ord(c))[2:].zfill(2) for c in x])
-    return toHex
+    return "".join([hex(ord(c))[2:].zfill(2) for c in x])
 
-first = "Hi There"
-second = "The ones"
+firstMessage = "Hi There"
+secondMessage = "The ones"
 key = "THEKEYZz"
 
-# ciphertexts (in hex format)
-c1 = toHex(strxor(first, key))
+# ciphertext (in hex format)
+c1 = toHex(strxor(firstMessage, key))
 ciphers = [c1]
 # The target ciphertext we want to crack
-target_cipher = toHex(strxor(second, key))
+target_cipher = toHex(strxor(secondMessage, key))
 
-both = toHex(strxor(c1.decode('hex'), target_cipher.decode('hex')))
+# the target and ciphertext xor'ed together
+xoredTogether = toHex(strxor(c1.decode('hex'), target_cipher.decode('hex')))
+
+# display the results for c1, target cipher, and the two xor'ed together
 print c1
 print target_cipher
-print both
+print xoredTogether
+print
 
+# the alphabet, including space
 alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
 
 attackLetters = []
-locationLetters = []
+locationOfLetters = []
 possibleKeys = []
 
 for letter in alpha:
     # is the character within our cipher?
     if toHex(letter) in c1: 
-        # is the hex value in the correct spot?
+        # is the hex value in the correct spot? meaning at an even index
         if c1.index(toHex(letter)) % 2 == 0:
             attackLetters.append(toHex(letter))
-            locationLetters.append(c1.index(toHex(letter)) / 2)
+            locationOfLetters.append(c1.index(toHex(letter)) / 2)
             
     # is the character within our cipher?
     if toHex(letter) in target_cipher:   
-        # is the hex value in the correct spot?
+        # is the hex value in the correct spot? meaning at an even index
         if target_cipher.index(toHex(letter)) % 2 == 0:
             attackLetters.append(toHex(letter))
-            locationLetters.append(target_cipher.index(toHex(letter)) / 2)
+            locationOfLetters.append(target_cipher.index(toHex(letter)) / 2)
 
+# determine the possible key
 count = 0
 for HEX in attackLetters:
     possible = []
@@ -67,6 +73,6 @@ for HEX in attackLetters:
 
     print HEX
     print possible
-    print "At location: " + str(locationLetters[count])
+    print "At location: " + str(locationOfLetters[count])
     print 
     count +=1
