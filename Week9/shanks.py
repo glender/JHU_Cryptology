@@ -24,7 +24,7 @@ class pair:
 
 
 # function to calculate (a ^ b)%p 
-def modRaisedByPower(a, b, p):
+def modulus(a, b, p):
     	value = 1
   
 	# find a mod p
@@ -50,13 +50,13 @@ def shanks(a, b, p):
 	value = list()
 
 	for i in reversed(range(1, num)):
-    		pa = pair(modRaisedByPower (a, i * num, p), i)
+    		pa = pair(modulus (a, i * num, p), i)
 		value.append(pa)
 
 	for j in range(0, num):
 
     	    	# collision check
-    	    	cur = (modRaisedByPower (a, j, p) * b) % p
+    	    	cur = (modulus (a, j, p) * b) % p
 
     	    	#if LHS is equal to RHS, collision occured
     	    	for x in value:
