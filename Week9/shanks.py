@@ -1,3 +1,13 @@
+#! /bin/python
+__author__ = "glender"
+__copyright__ = "Copyright (c) 2018 glender"
+__credits__ = [ "glender" ]
+__license__ = "MIT"
+__version__ = "0.1"
+__maintainer__ = "glender"
+__email__ = "None"
+__status__ = "Production"
+
 import math
 
 # class def for pairs
@@ -64,8 +74,15 @@ def shanks(a, b, p):
     	return -1
 
 
+space = 2 * "\n"
 
 a = 106
 b = 12375
 p = 24691	
 print shanks(a, b, p)
+print space
+a = 6
+b = 248388
+p = 458009
+print shanks(a, b, p)
+print space
