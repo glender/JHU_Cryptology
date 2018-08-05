@@ -8,8 +8,6 @@ __maintainer__ = "glender"
 __email__ = "None"
 __status__ = "Production"
 
-import math
-
 # Elliptic curve class
 class curve:
 
